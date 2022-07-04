@@ -22,12 +22,17 @@ export class UploadService {
 		const totalSellConsideration = sellData
 			.map((item) => parseFloat(item.Consideration))
 			.reduce((prev, curr) => prev + curr, 0);
+		const actualTotalSellConsideration = totalSellConsideration / 100;
+		const actualTotalSellPrice = totalSellPrice / 100;
+		const totalSellProfit =
+			actualTotalSellPrice - actualTotalSellConsideration;
 		return {
 			success: true,
 			message: 'Success',
-			totalSellConsideration: totalSellConsideration / 100,
-			totalSellPrice: totalSellPrice / 100,
-			profit: totalSellConsideration - totalSellPrice,
+			totalSellConsideration: actualTotalSellConsideration,
+			totalSellPrice: actualTotalSellPrice,
+			profit: totalSellProfit,
+			loss: totalSellProfit >= 0 ? 0 : totalSellProfit,
 			PriceTotal: absoluteTotal.toFixed(3),
 			data: newData,
 		};
