@@ -10,11 +10,11 @@ export class UploadService {
 			.map((item) => parseFloat(item.Price))
 			.reduce((prev, curr) => prev + curr, 0);
 		const absoluteTotal = returns / 100;
-		console.log('Returns', absoluteTotal.toFixed(3));
+		// console.log('Returns', absoluteTotal.toFixed(3));
 		const sellData = newData.filter((item) => {
 			return item.Direction === 'SELL';
 		});
-		console.log('Sell data', sellData);
+		// console.log('Sell data', sellData);
 		const totalSellPrice = sellData
 			.map((item) => parseFloat(item.Price))
 			.reduce((prev, curr) => prev + curr, 0);
